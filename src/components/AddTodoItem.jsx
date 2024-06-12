@@ -20,8 +20,14 @@ function AddTodoItem({ onNewItem }) {
             className="form-control"
             placeholder="Add new todo"
             ref={todoNameElement}
+            required
           />
-          <input type="date" className="form-control" ref={dueDateElement} />
+          <input
+            type="date"
+            className="form-control"
+            ref={dueDateElement}
+            required
+          />
           <button className="btn btn-success text-white" type="submit">
             <FaCirclePlus />
           </button>

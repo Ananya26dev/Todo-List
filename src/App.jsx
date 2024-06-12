@@ -8,8 +8,15 @@ function App() {
   const handleNewItem = (itemName, itemDueDate) => {
     setTodoItems((currValue) => [
       ...currValue,
-      { name: itemName, dueDate: itemDueDate },
+      { name: itemName, dueDate: itemDueDate, isChecked: false },
     ]);
+  };
+  const handleCheckboxChange = (itemName) => {
+    setTodoItems((prevItems) =>
+      prevItems.map((item) =>
+        item.name === itemName ? { ...item, isChecked: !item.isChecked } : item
+      )
+    );
   };
   const handleDeleteItem = (todoItemName) => {
     const newTodoItems = todoItems.filter((item) => item.name !== todoItemName);
@@ -28,7 +35,11 @@ function App() {
             </div>
             <AddTodoItem onNewItem={handleNewItem} />
             {todoItems.length === 0 && <EmptyTodolist />}
-            <TodoItem todoItems={todoItems} onDeleteClick={handleDeleteItem} />
+            <TodoItem
+              todoItems={todoItems}
+              onCheckboxChange={handleCheckboxChange}
+              onDeleteClick={handleDeleteItem}
+            />
           </div>
         </div>
       </div>
